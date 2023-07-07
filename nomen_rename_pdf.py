@@ -1,11 +1,11 @@
 # Script rename all PDFs in directory with OCN from image
 import os
 import sys
-import fitz
+
 import cv2
+import fitz
 import numpy as np
 from PIL import Image
-
 
 mat = fitz.Matrix(1, 1)
 
@@ -26,8 +26,8 @@ pdf_files = [filename for filename in os.listdir(
 
 for pdf_file in pdf_files:
     images = fitz.open(pdf_file)
-    image = images.loadPage(0)
-    image = image.getPixmap(matrix=mat)
+    image = images.load_page(0)
+    image = image.get_pixmap(matrix=mat)
     image_pil = Image.frombytes(
         "RGB", [image.width, image.height], image.samples)
     image = np.array(image_pil)

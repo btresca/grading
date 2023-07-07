@@ -1,10 +1,10 @@
 # Script to scan all PDFs in directory for QR codes then rename from QR data
-import fitz
-import cv2
-import numpy as np
 import os
+
+import cv2
+import fitz
+import numpy as np
 from PIL import Image
-from pdf2image import convert_from_path
 from pyzbar.pyzbar import decode
 
 # run for single pdf file
@@ -26,8 +26,8 @@ for pdf_file in pdf_files:
     images = fitz.open(pdf_file)
     quiz_title = None
     ocn = None
-    image = images.loadPage(0)
-    image = image.getPixmap(matrix=mat)
+    image = images.load_page(0)
+    image = image.get_pixmap(matrix=mat)
     image_pil = Image.frombytes(
         "RGB", [image.width, image.height], image.samples)
     image = np.array(image_pil)
