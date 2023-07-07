@@ -14,7 +14,7 @@ Blake Tresca, Kalamazoo College.
 6) Navigate to teaching folder
     `cd ~/usr/../teaching`
 7) Run student QR sheet generator
-    `python OCN_sheet.py classlist.csv`
+    `python ocn_qr_sheet.py classlist.csv`
     Note: Save your classlist to teaching folder as csv, must have at least two columns with titles in first row.
 8) Follow prompts in python to generate QR sheets
 9) Prepare a quiz and insert QR code
