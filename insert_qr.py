@@ -1,7 +1,7 @@
+import sys
+
 import fitz
 import qrcode
-# import pandas
-import sys
 
 # test for quiz title as argument
 if len(sys.argv) < 2:
@@ -30,8 +30,8 @@ first_page = file_handle[0]
 # define position and size then add qr image
 # minimum readable size = 60 pts square
 image_rectangle = fitz.Rect(first_page.rect.tl + 20, first_page.rect.tl + 100)
-first_page.insertImage(image_rectangle, filename=qr_out)
+first_page.insert_image(image_rectangle, filename=qr_out)
 
 #save the modified pdf as a new file
-first_page.cleanContents()
+first_page.clean_contents()
 file_handle.save(output_file)

@@ -1,10 +1,11 @@
-import qrcode
-import numpy as np
-from PIL import Image, ImageFont, ImageDraw
 import os
-import fitz
-import sys
 import shutil
+import sys
+
+import fitz
+import numpy as np
+import qrcode
+from PIL import Image, ImageDraw, ImageFont
 
 title_font = ImageFont.truetype('/System/Library/Fonts/NewYork.ttf', size=14)
 
@@ -103,14 +104,14 @@ for req in req_table:
         # minimum readable size = 60 pts square
         image_rectangle = fitz.Rect(
             first_page.rect.x0 + 505, first_page.rect.y0 + 20, first_page.rect.x0 + 585, first_page.rect.y0 + 100)
-        first_page.insertImage(image_rectangle, filename=f'{IMG_DIR}/{qr_out}')
+        first_page.insert_image(image_rectangle, filename=f'{IMG_DIR}/{qr_out}')
         image_rectangle = fitz.Rect(
             first_page.rect.x0 + 505, first_page.rect.y0 + 100, first_page.rect.x0 + 585, first_page.rect.y0 + 115)
-        first_page.insertTextbox(
+        first_page.insert_textbox(
             image_rectangle, ocn_str, fontsize=10, fontname="Helvetica", fontfile=None, align=0)
 
         #save the modified pdf as a new file
-        first_page.cleanContents()
+        first_page.clean_contents()
         file_handle.save(f'{OCN_DIR}/{output_file}')
 
         # break

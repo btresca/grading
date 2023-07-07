@@ -1,15 +1,15 @@
 # Test script to scan all PDFs in directory for QR codes then rename
 # from QR data
-import fitz
+import os
+
 import cv2
+import fitz
+import imutils
 import numpy as np
 import pandas as pd
-import os
-from PIL import Image
-# from pdf2image import convert_from_path
-import imutils
 from imutils.perspective import four_point_transform
-# from imutils import contours
+from PIL import Image
+
 
 def process_image(image_in, title):
     global quiz_title
@@ -176,8 +176,8 @@ for pdf_file in pdf_files:
     ocn_quiz = None
     ocn_quiz = str(pdf_file[len(pdf_file)-8:len(pdf_file)-4])
     quiz_title = str(pdf_file[0:len(pdf_file)-9])
-    image = images.loadPage(0)
-    image = image.getPixmap(matrix=mat)
+    image = images.load_page(0)
+    image = image.get_pixmap(matrix=mat)
     image_pil = Image.frombytes(
         "RGB", [image.width, image.height], image.samples)
     image = np.array(image_pil)
