@@ -1,11 +1,12 @@
-import qrcode
-import pandas
-import numpy as np
-from PIL import Image, ImageFont, ImageDraw
 import os
-import fitz
-import sys
 import shutil
+import sys
+
+import fitz
+import numpy as np
+import pandas
+import qrcode
+from PIL import Image, ImageDraw, ImageFont
 
 title_font = ImageFont.truetype('/System/Library/Fonts/NewYork.ttf', size=14)
 
@@ -96,7 +97,7 @@ for index, ocn in ocn_list.items():
             width2 = width - 2
             height2 = height - 2
             src.set_origin(width2, height2)
-            first_page.insertTextbox(src.irect, ocn_str, fontsize=8, fontname="Helvetica", fontfile=None, align=1)
+            first_page.insert_textbox(src.irect, ocn_str, fontsize=8, fontname="Helvetica", fontfile=None, align=1)
 
 
     sheet_out = str(f'{SHEET_DIR}/{output_file}')
@@ -106,7 +107,7 @@ for index, ocn in ocn_list.items():
     file_handle.save(sheet_out)
 
     #save the modified pdf as a new file
-    first_page.cleanContents()
+    first_page.clean_contents()
     file_handle.save(sheet_out)
 
 
