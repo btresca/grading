@@ -18,7 +18,7 @@ Blake Tresca, Kalamazoo College.
     Note: Save your classlist to teaching folder as csv, must have at least two columns with titles in first row.
 8) Follow prompts in python to generate QR sheets
 9) Prepare a quiz and insert QR code
-9b) Optional: Make reassessment packs with student QR codes added
-10) Scan complete assessments into individual pdf, one page per file
-11) Use rename script to read assessment and student codes
-12) Read grades from assessments
+10) (if reassessing) Make reassessment packs with student QR codes added
+11) Scan complete assessments into individual pdf, one page per file
+12) Use rename script to read assessment and student codes
+13) Read grades from assessments
