@@ -152,14 +152,19 @@ for pdf_file in pdf_files:
 
     if w <= 30 and h <= 30 and ar <= 0.8 and ar <= 1.4:
         grade = "x"
+        os.system('say "bonk"')
     elif cX >= 360 and cX <= 390:
         grade = "U"
+        os.system('say "quack"')
     elif cX >= 240 and cX <= 300:
         grade = "P"
+        os.system('say "moooo"')
     elif cX >= 180 and cX <= 210:
         grade = "E"
+        os.system('say "oink"')
     else:
         grade = "x"
+        os.system('say "bonk"')
     print(ocn_quiz, cX, cY, grade)
 
 #test if column and ocn exists, if not then add them
