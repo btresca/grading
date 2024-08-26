@@ -35,24 +35,24 @@ for pdf_file in pdf_files:
     image_pil = Image.frombytes(
         "RGB", [image.width, image.height], image.samples)
     image = np.array(image_pil)
-    # print(image.shape)
+    #print(image.shape)
 
     ## crop image and convert to black and white with threshold
-    image = image[100:280, 300:950]
+    image = image[1300:1580, 100:1220]
     grey = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
-    image_black = cv2.threshold(grey, 150, 255, cv2.THRESH_BINARY)[1]
-    # cv2.imshow(pdf_file, image)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-    # break
+    #image_black = cv2.threshold(grey, 150, 255, cv2.THRESH_BINARY)[1]
+    #cv2.imshow(pdf_file, image)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+    #break
 
     blurred = cv2.GaussianBlur(grey, (5, 5), 0)
     edged = cv2.Canny(blurred, 75, 200)
 
-    # cv2.imshow(pdf_file, edged)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-    # break
+    #cv2.imshow(pdf_file, edged)
+    #cv2.waitKey(0)
+    #cv2.destroyAllWindows()
+    #break
 
     ## find contours in the edge map, then initialize
     ## the contour that corresponds to the document
@@ -86,7 +86,10 @@ for pdf_file in pdf_files:
         print("No grades in", pdf_file)
         continue
 
-    warped = four_point_transform(grey, docCnt.reshape(4, 2))
+## Problem with four_point_transform is causing some files to crop outside the box, actual problem is contour list (docCnt)
+    #warped = four_point_transform(grey, docCnt.reshape(4, 2))
+    warped = grey[docCnt.reshape(4,2)]
+    ## work here to fix the transform output coordinates
     crop = 3
     y1 = paper.shape[0]
     x1 = paper.shape[1]
@@ -95,10 +98,13 @@ for pdf_file in pdf_files:
     x1 = warped.shape[1]
     warped = warped[crop:y1-crop, crop:x1-crop]
 
-    # cv2.imshow(pdf_file, warped)
-    # cv2.waitKey(0)
-    # cv2.destroyAllWindows()
-    # break
+    cv2.imshow(pdf_file, paper)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    cv2.imshow(pdf_file, warped)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+    #break
 
     # apply Otsu's thresholding method to binarize the warped
     # piece of paper
@@ -152,12 +158,16 @@ for pdf_file in pdf_files:
 
     if w <= 30 and h <= 30 and ar <= 0.8 and ar <= 1.4:
         grade = "x"
-    elif cX >= 360 and cX <= 390:
-        grade = "U"
-    elif cX >= 240 and cX <= 300:
-        grade = "P"
-    elif cX >= 180 and cX <= 210:
-        grade = "E"
+    elif cX >= 810 and cX <= 870:
+        grade = "F"
+    elif cX >= 700 and cX <= 760:
+        grade = "D"
+    elif cX >= 575 and cX <= 635:
+        grade = "C"
+    elif cX >= 465 and cX <= 525:
+        grade = "B"
+    elif cX >= 350 and cX <= 410:
+        grade = "A"
     else:
         grade = "x"
     print(ocn_quiz, cX, cY, grade)
