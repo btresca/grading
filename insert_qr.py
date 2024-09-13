@@ -32,7 +32,7 @@ image_rectangle = fitz.Rect(first_page.rect.x0 + 30,
                             first_page.rect.y0 + 55,
                             first_page.rect.x0 + 110,
                             first_page.rect.y0 + 135)
-first_page.insertImage(image_rectangle, filename=qr_out)
+first_page.insert_image(image_rectangle, filename=qr_out)
 
 #save the modified pdf as a new file
 first_page.clean_contents()
