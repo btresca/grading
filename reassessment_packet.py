@@ -96,7 +96,7 @@ for req in req_table:
                         first_page.rect.y0 + 59,
                         first_page.rect.x0 + 570,
                         first_page.rect.y0 + 139)
-            first_page.insertImage(
+            first_page.insert_image(
                 image_rectangle, filename=f'{IMG_DIR}/{qr_out}')
             # insert text of OCN above QR code
             for page in file_handle:
@@ -105,7 +105,7 @@ for req in req_table:
                             page.rect.y0 + 50,
                             page.rect.x0 + 570,
                             page.rect.y0 + 65)
-                page.insertTextbox(
+                page.insert_textbox(
                             image_rectangle, ocn_str, fontsize=10,
                             fontname="Helvetica", fontfile=None, align=0)
                 page.clean_contents()
@@ -117,19 +117,19 @@ for req in req_table:
                         page.rect.y0 + 59,
                         page.rect.x0 + 570,
                         page.rect.y0 + 139)
-                page.insertImage(
+                page.insert_image(
                     image_rectangle, filename=f'{IMG_DIR}/{qr_out}')
                 image_rectangle = fitz.Rect(
                             page.rect.x0 + 510,
                             page.rect.y0 + 50,
                             page.rect.x0 + 570,
                             page.rect.y0 + 65)
-                page.insertTextbox(
+                page.insert_textbox(
                                 image_rectangle, ocn_str, fontsize=10,
                                 fontname="Helvetica", fontfile=None, align=0)
                 page.cleanContents()
 
-        file_merge.insertPDF(file_handle)
+        file_merge.insert_PDF(file_handle)
         file_handle.close()
 
     file_merge.save(f'{SHEET_DIR}/{output_file}')
