@@ -129,7 +129,7 @@ for req in req_table:
                                 fontname="Helvetica", fontfile=None, align=0)
                 page.cleanContents()
 
-        file_merge.insert_PDF(file_handle)
+        file_merge.insertPDF(file_handle)
         file_handle.close()
 
     file_merge.save(f'{SHEET_DIR}/{output_file}')
