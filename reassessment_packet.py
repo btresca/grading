@@ -127,7 +127,7 @@ for req in req_table:
                 page.insert_textbox(
                                 image_rectangle, ocn_str, fontsize=10,
                                 fontname="Helvetica", fontfile=None, align=0)
-                page.cleanContents()
+                page.clean_contents()
 
         file_merge.insertPDF(file_handle)
         file_handle.close()
